@@ -3716,11 +3716,108 @@ body.is-opening { animation:none!important; }
                 justify-content: center;
             }
         }
-        /* The expanded panel contains the full certificate archive.  The
-           legacy 4000px cap clipped the final card, so leave ample room for
-           the complete content on both desktop and mobile. */
+        /* The open height follows the actual content, including images loaded later. */
         .resume-page:not(.hidden) .unfold-panel.open {
-            max-height: 12000px;
+            max-height: var(--unfold-content-height, 12000px);
+        }
+
+        /* The game and certificate galleries each read as one continuous page. */
+        .scroll-container.is-open .games-panel,
+        .scroll-container.is-open .certificates-panel {
+            min-width: 0;
+            padding: clamp(14px, 2.4vw, 26px);
+            border: 1px solid rgba(109, 220, 220, .42);
+            border-radius: 0 0 18px 18px;
+            background: linear-gradient(125deg, rgba(7, 28, 37, .86), rgba(17, 52, 58, .78) 55%, rgba(40, 29, 62, .78));
+            box-shadow: 0 12px 30px rgba(1, 10, 19, .22), inset 0 1px 0 rgba(219, 165, 255, .1);
+        }
+        .scroll-container.is-open .games-panel .scroll-game-grid,
+        .scroll-container.is-open .certificates-panel .certificate-showcase {
+            min-width: 0;
+            gap: 0;
+            margin-top: 0;
+        }
+        .scroll-container.is-open .games-panel .scroll-game-card,
+        .scroll-container.is-open .certificates-panel .cert-card,
+        .scroll-container.is-open .certificates-panel .cert-card:nth-child(n) {
+            min-width: 0;
+            border: 0;
+            border-bottom: 1px solid rgba(111, 216, 221, .27);
+            border-radius: 0;
+            background: transparent;
+            box-shadow: none;
+            backdrop-filter: none;
+            animation: none;
+        }
+        .scroll-container.is-open .games-panel .scroll-game-card:last-child,
+        .scroll-container.is-open .certificates-panel .cert-card:last-child { border-bottom: 0; }
+        .scroll-container.is-open .games-panel .scroll-game-card:first-child {
+            background: linear-gradient(105deg, rgba(104, 47, 125, .14), transparent 68%);
+        }
+        .scroll-container.is-open .games-panel .scroll-game-card:last-child {
+            background: linear-gradient(105deg, rgba(31, 138, 142, .12), transparent 68%);
+        }
+        .scroll-container.is-open .certificates-panel .certificate-showcase::before {
+            color: rgba(173, 228, 226, .63);
+            padding-bottom: 12px;
+        }
+        .scroll-container.is-open .games-panel .scroll-game-card::after,
+        .scroll-container.is-open .certificates-panel .cert-card::before,
+        .scroll-container.is-open .certificates-panel .cert-card::after { display: none; }
+        .scroll-container.is-open .games-panel .scroll-game-card > img,
+        .scroll-container.is-open .certificates-panel .cert-card > img {
+            border: 1px solid rgba(114, 221, 227, .55);
+            border-radius: 7px;
+            box-shadow: 0 0 0 1px rgba(222, 154, 249, .15), 0 8px 22px rgba(0, 7, 14, .22);
+        }
+
+        @media (max-width: 720px) {
+            /* Keep the previous image proportions and size caps; prevent squashed columns. */
+            .scroll-container.is-open .games-panel .scroll-game-card,
+            .scroll-container.is-open .certificates-panel .cert-card,
+            .scroll-container.is-open .certificates-panel .cert-card:nth-child(3) {
+                grid-template-columns: minmax(0, 1fr);
+                gap: 9px;
+                padding: 14px 2px;
+                overflow: visible;
+                transform: none !important;
+            }
+            .scroll-container.is-open .games-panel .scroll-game-card > img,
+            .scroll-container.is-open .certificates-panel .cert-card > img,
+            .scroll-container.is-open .certificates-panel .cert-card:nth-child(3) > img {
+                display: block;
+                grid-column: 1;
+                grid-row: 1;
+                width: 100%;
+                height: auto;
+                aspect-ratio: auto;
+                object-fit: contain;
+                margin-inline: auto;
+            }
+            .scroll-container.is-open .games-panel .scroll-game-card > img { max-height: 360px; }
+            .scroll-container.is-open .certificates-panel .cert-card > img { max-height: 300px; }
+            .scroll-container.is-open .games-panel .scroll-game-card > div,
+            .scroll-container.is-open .certificates-panel .cert-card > .cert-copy {
+                grid-column: 1;
+                grid-row: 2;
+                min-width: 0;
+            }
+            .scroll-container.is-open .games-panel,
+            .scroll-container.is-open .certificates-panel {
+                padding: 10px 14px 6px;
+                border-radius: 0 0 14px 14px;
+            }
+            .scroll-container.is-open .unfold-section::after,
+            .scroll-container.is-open .unfold-panel.open::before {
+                animation: none;
+                filter: none;
+            }
+            .scroll-container.is-open .unfold-panel.open::after {
+                animation-duration: 18s;
+                opacity: .38;
+            }
+            .neon-mist-ring { filter: blur(11px); }
+            .neon-chroma { backdrop-filter: none; }
         }
     </style>
 </head>
@@ -4005,11 +4102,11 @@ body.is-opening { animation:none!important; }
                     <div class="panel-item games-panel" style="grid-column: 1 / -1; border-bottom: none; padding-top: 0;">
                         <div class="scroll-game-grid">
                             <article class="scroll-game-card">
-                                <img src="game-sky-strike.jpg" alt="小游戏一 SKY STRIKE 空战街机" loading="lazy">
+                                <img src="game-sky-strike.jpg" alt="小游戏一 SKY STRIKE 空战街机" loading="eager" decoding="async">
                                 <div><h3>小游戏一 · SKY STRIKE</h3><p>个人独立开发的 2D 网页街机射击游戏，实现拖拽移动、自动射击、运动逻辑、交互响应与画面渲染，并完成网页端部署发布。</p><p class="game-capability"><b>能力体现：</b>交互式业务逻辑、前端动画、事件处理，以及从开发到线上部署的完整落地能力。</p><a href="https://skws2khig8lf.meoo.run" target="_blank" rel="noopener">START ↗</a></div>
                             </article>
                             <article class="scroll-game-card">
-                                <img src="game-fallen-bloom.jpg" alt="小游戏二 FALLEN BLOOM 彩色互动界面" loading="lazy">
+                                <img src="game-fallen-bloom.jpg" alt="小游戏二 FALLEN BLOOM 彩色互动界面" loading="eager" decoding="async">
                                 <div><h3>小游戏二 · FALLEN BLOOM</h3><p>彩色霓虹风格互动小游戏，以光点、模式入口和节奏化界面构成沉浸式体验，探索拖拽、自动射击与粒子动效的网页表达。</p><p class="game-capability"><b>能力体现：</b>将界面构图、交互反馈与氛围动效组合为完整可玩的网页作品。</p><a href="https://k83be49xxjh3.meoo.zone" target="_blank" rel="noopener">START ↗</a></div>
                             </article>
                         </div>
@@ -4020,7 +4117,7 @@ body.is-opening { animation:none!important; }
                         <span class="label">CERTIFICATES &amp; ACTIVITIES</span>
                         <span class="label-underline"></span>
                     </div>
-                    <div class="panel-item" style="grid-column: 1 / -1; border-bottom: none; padding-top: 0;">
+                    <div class="panel-item certificates-panel" style="grid-column: 1 / -1; border-bottom: none; padding-top: 0;">
                         <div class="certificate-showcase">
                             <div class="cert-card">
                                 <img src="微信图片_20260826001056_114_2.jpg" alt="阿里达摩院高级人工智能训练师证书" loading="eager">
@@ -4596,8 +4693,13 @@ body.is-opening { animation:none!important; }
         }
         wrapLatinText();
 
-        // 为展开后的每个小标题铺一朵轻量莲花，并准备一朵可沿标题依次滑行的莲花。
-        const lotusTitles = Array.from(document.querySelectorAll('.section-title-wrap'));
+        // 只给四个重点模块铺莲花，避免图片密集区域之外的标题重复占位。
+        // 开场卷轴与莲花入场逻辑保持不变；这里仅减少展开后标题装饰的数量。
+        const lotusLabels = new Set(['EDUCATION', 'CERTIFICATIONS', 'GAME PROJECTS', 'CERTIFICATES & ACTIVITIES']);
+        const lotusTitles = Array.from(document.querySelectorAll('.section-title-wrap')).filter(title => {
+            const label = title.querySelector('.label');
+            return label && lotusLabels.has(label.textContent.trim());
+        });
         lotusTitles.forEach((title, index) => {
             title.classList.add('lotus-title');
             title.dataset.lotusIndex = String(index);
@@ -4759,12 +4861,22 @@ body.is-opening { animation:none!important; }
             window.setTimeout(() => prelude.classList.remove('mushroom-ritual'), 7000);
         }
 
+        function syncUnfoldHeight() {
+            if (!panelInner) return;
+            panel.style.setProperty('--unfold-content-height', `${Math.ceil(panelInner.scrollHeight + 80)}px`);
+        }
+        if (panelInner && 'ResizeObserver' in window) {
+            new ResizeObserver(() => { if (isOpen) syncUnfoldHeight(); }).observe(panelInner);
+        }
+        window.addEventListener('resize', () => { if (isOpen) syncUnfoldHeight(); }, { passive: true });
+
         function togglePanel(e) {
             if (e) e.stopPropagation();
             isOpen = !isOpen;
             panel.classList.toggle('open', isOpen);
             scrollContainer.classList.toggle('is-open', isOpen);
             document.body.classList.toggle('is-open', isOpen);
+            if (isOpen) syncUnfoldHeight();
             icon.style.transform = isOpen ? 'rotate(180deg)' : 'rotate(0deg)';
             const hint = trigger.querySelector('.hint');
             if (hint) hint.textContent = isOpen ? '▲' : '▼';

@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1000" role="img" aria-label="苔藓覆盖的暗色森林枝条插画">
+  <defs>
+    <linearGradient id="bark" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#17231d"/><stop offset=".46" stop-color="#4c5032"/><stop offset="1" stop-color="#8e9b63"/></linearGradient>
+    <linearGradient id="moss" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#536d3e"/><stop offset=".55" stop-color="#9aae63"/><stop offset="1" stop-color="#c7d796"/></linearGradient>
+    <linearGradient id="leaf" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#264c3e"/><stop offset=".5" stop-color="#648f6f"/><stop offset="1" stop-color="#b1c987"/></linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  </defs>
+  <g opacity=".9">
+    <path d="M36 890 C260 846 360 770 492 696 C625 622 736 594 845 498 C978 381 1094 291 1242 210" fill="none" stroke="#0f1714" stroke-width="98" stroke-linecap="round" opacity=".5"/>
+    <path d="M36 890 C260 846 360 770 492 696 C625 622 736 594 845 498 C978 381 1094 291 1242 210" fill="none" stroke="url(#bark)" stroke-width="70" stroke-linecap="round"/>
+    <path d="M398 748 C382 626 332 508 270 392 M580 650 C590 525 622 421 694 310 M770 548 C826 454 896 385 1004 322 M962 402 C1051 342 1152 313 1300 316 M1000 358 C1086 241 1184 181 1329 142 M250 400 C195 319 153 270 94 232" fill="none" stroke="#647d4d" stroke-width="28" stroke-linecap="round" opacity=".82"/>
+  </g>
+  <g fill="url(#leaf)" opacity=".94">
+    <path d="M228 352 C120 292 80 213 94 142 C183 156 246 217 228 352Z"/><path d="M316 511 C207 485 143 421 136 345 C224 345 294 390 316 511Z"/>
+    <path d="M614 431 C549 332 562 250 622 186 C687 267 684 350 614 431Z"/><path d="M744 420 C714 315 750 236 824 185 C853 286 824 367 744 420Z"/>
+    <path d="M904 364 C917 260 981 198 1066 183 C1057 286 997 348 904 364Z"/><path d="M1110 292 C1166 198 1246 166 1330 185 C1282 273 1209 310 1110 292Z"/><path d="M1140 347 C1242 305 1324 327 1377 388 C1277 432 1193 415 1140 347Z"/>
+  </g>
+  <g fill="url(#moss)" filter="url(#glow)" opacity=".9">
+    <ellipse cx="270" cy="820" rx="118" ry="34" transform="rotate(-17 270 820)"/><ellipse cx="438" cy="720" rx="112" ry="29" transform="rotate(-24 438 720)"/>
+    <ellipse cx="616" cy="622" rx="105" ry="27" transform="rotate(-27 616 622)"/><ellipse cx="792" cy="522" rx="98" ry="27" transform="rotate(-30 792 522)"/>
+    <ellipse cx="957" cy="403" rx="90" ry="24" transform="rotate(-32 957 403)"/><ellipse cx="1129" cy="286" rx="83" ry="22" transform="rotate(-29 1129 286)"/>
+    <ellipse cx="275" cy="400" rx="35" ry="82" transform="rotate(-25 275 400)"/><ellipse cx="625" cy="321" rx="33" ry="80" transform="rotate(15 625 321)"/><ellipse cx="1015" cy="332" rx="28" ry="76" transform="rotate(48 1015 332)"/>
+  </g>
+  <g fill="#dbe8ad" opacity=".9">
+    <circle cx="332" cy="766" r="7"/><circle cx="512" cy="671" r="5"/><circle cx="704" cy="565" r="6"/><circle cx="869" cy="470" r="5"/><circle cx="1056" cy="340" r="6"/><circle cx="1211" cy="252" r="4"/>
+  </g>
+  <g fill="none" stroke="#e8efc4" stroke-width="3" opacity=".35"><path d="M105 172 C156 209 191 263 216 332"/><path d="M618 213 C642 277 646 347 622 414"/><path d="M1060 208 C1016 260 973 305 917 348"/></g>
+</svg>
